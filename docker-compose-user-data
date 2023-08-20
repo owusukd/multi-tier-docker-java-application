@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# generate ssh key and upload to github
+ssh-keygen
+cat ~/.ssh/id_rsa.pub
+
+# clone the repo
+git clone git@github.com:owusukd/multi-tier-docker-java-application.git
+cd multi-tier-docker-java-application
+git checkout containers
+
+# build docker images
+sudo docker compose build
+sudo docker images
+
+# run the images
+sudo docker compose up -d
+sudo docker ps
+
+# push images to dockerhub
+# run the command below and enter username and password for the dockerhub
+# make the following repos exist on dockerhub:
+# owusukd/vprofileapp
+# owusukd/vprofiledb
+# owusukd/vprofileweb
+sudo docker login
+sudo docker images
+sudo docker push owusukd/vprofileapp
+sudo docker push owusukd/vprofiledb
+sudo docker push owusukd/vprofileweb
+
+# stop the running containers and remove the images
+sudo docker compose down
+
+# cleanup
+sudo docker system prune -a
