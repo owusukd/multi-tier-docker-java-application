@@ -1,7 +1,4 @@
 # Multi-tier Docker App
-In this project, I deployed . 
-The application is a standalone monolithic java application. 
-In this project I provisioned a Jenkins server and a SonarQube server for code analysis with defined quality gate. 
-I also, created slack notification channel for the project for build notifications. 
-The whole process involved in fetching the code from github, performing code anaalysis, building the a docker image of the app, uploading it to AWS ECR and deploying it on AWS ECS was automated using Jenkins. 
-
+In this project, I deployed a java app which depends on MySQL database, RabbitMQ, Memcache, and Nginx for load balancing.
+The docker image of the app, DB, and Nginx were built and uploaded onto Dockerhub, whiles memcache and rabbitmq were downloaded from Dockerhub.
+The building and the deployment were done with a Docker compose file. 
